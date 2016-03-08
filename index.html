@@ -34,6 +34,39 @@
 	    </md-card>
 	</section>
 
+	<!-- Food cards -->
+	<section>
+		<md-card  flex="20" flex-offset="15" flex-xs="90" flex-offset-xs="5">
+        <img ng-src="{{imagePath}}" class="md-card-image" alt="FOOD IMAGE">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Food name</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p>
+            description ORGANIC DELUXE
+          </p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="center center">
+           
+           <span>$1.00</span>
+
+           <span flex></span>
+			<span>
+			  <md-button class="md-icon-button" aria-label="Minus">
+			    <i class="fa fa-minus"></i>
+			  </md-button>
+			    <input name="qty" value="0" class="qty">
+			  <md-button class="md-icon-button" aria-label="Add">
+			    <i class="fa fa-plus"></i>
+			  </md-button>
+			</span>
+
+			<md-button>Add to cart</md-button>
+        </md-card-actions>
+      </md-card>
+	</section>
 
 
 	<ng-include src="'footer.html'"></ng-include>
