@@ -9,14 +9,18 @@
 	<!-- Angular Material style sheet -->
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/main.css" type="text/css" >
 </head>
 <body ng-app="MainApp" ng-controller="MainController" ng-cloak>
+	<ng-include src="'header.html'"></ng-include>
+	<section>
 	{{::hello}}
+	</section>
 
 
 
-
+	<ng-include src="'footer.html'"></ng-include>
 	<!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
