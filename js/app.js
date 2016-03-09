@@ -1,4 +1,8 @@
-var app = angular.module('MainApp', ['ngMaterial']);
+var app = angular.module('MainApp', ['ngMaterial']).config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue')
+    .accentPalette('amber');
+});
 
 app.controller('MainController', function($scope, $http, $sce) {
   $http.get('food.json')

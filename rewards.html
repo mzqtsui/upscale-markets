@@ -16,59 +16,8 @@
 <body ng-app="MainApp" ng-controller="MainController" ng-cloak>
 	<ng-include src="'header.html'"></ng-include>
 	<section>
-		<h1>Upscale Markets</h1>
-		<aside>
-		Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
-		</aside>
+		<h1>YOU HAVE <strong>1000</strong> POINTS!</h1>
 	</section>
-	<section>
-		<md-card flex="70" flex-offset="15" flex-xs="90" >
-	        <md-content layout="row"  layout-padding>
-		    <div flex>
-		      <md-input-container class="main-search">
-		        <label>Search</label>
-		        <input ng-model="search">
-		      </md-input-container>
-		    </div>
-		  </md-content>
-	    </md-card>
-	</section>
-
-	<!-- Food cards -->
-	<section>
-		<div flex flex-offset="15" flex-offset-xs="0" layout-wrap layout="row">
-			<md-card ng-repeat="f in foods" class="food">
-	        <img ng-src="{{f.image}}" class="md-card-image foodImage" alt="FOOD IMAGE">
-	        <md-card-title>
-	          <md-card-title-text>
-	            <span class="md-headline">{{f.name}}</span>
-	          </md-card-title-text>
-	        </md-card-title>
-	        <md-card-content>
-	            {{f.description}}
-	        </md-card-content>
-	        <md-card-actions layout="row" flex layout-align="center center">
-	           
-	           <span>${{f.price}}</span>
-
-	           <span flex></span>
-				<span  layout="row">
-				  <md-button class="md-icon-button" aria-label="Minus">
-				    <i class="fa fa-minus"></i>
-				  </md-button>
-				    <input name="qty" value="0" class="qty">
-				  <md-button class="md-icon-button" aria-label="Add">
-				    <i class="fa fa-plus"></i>
-				  </md-button>
-				</span>
-
-				<md-button>Add to cart</md-button>
-	        </md-card-actions>
-	      </md-card>
-
-	  </div>
-	</section>
-
 
 	<ng-include src="'footer.html'"></ng-include>
 	<!-- Angular Material requires Angular.js Libraries -->

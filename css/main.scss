@@ -1,5 +1,6 @@
 $c_text: black;
 $c_footer_text: #777;
+$c_accent: #0D47A1;
 
 body{
 	font-family: Roboto, Helvetica, Arial, sans-serif;
@@ -35,6 +36,10 @@ footer{
 	}
 }
 
+strong {
+	color: $c_accent;
+}
+
 .cart{
 	font-size:1.2em;
 }
@@ -42,6 +47,10 @@ footer{
 .food {
 	width: 350px; 
 	max-width:350px; 
+}
+
+.foodImage {
+	height: 200px; 
 }
 
 .main-search{
