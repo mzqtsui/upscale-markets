@@ -36,6 +36,7 @@ footer{
 	}
 }
 
+
 strong {
 	color: $c_accent;
 }
@@ -44,23 +45,31 @@ strong {
 	font-size:1.2em;
 }
 
-.food {
-	width: 350px; 
-	max-width:350px; 
+.food{
+	width:250px;
+	img{
+		height: 150px; 
+	}
+	.qty{
+		max-width: 30px; 
+		text-align: center;
+	}
+	.price{
+		text-align:center;
+		font-size:24px;
+		margin-top:10px;
+	}
+	.md-fab-toolbar, .md-fab-toolbar-tools, .md-fab-toolbar-wrapper, .md-fab-toolbar-content, md-toolbar {
+		height:54px;
+		min-height:54px;
+	}
 }
 
-.foodImage {
-	height: 200px; 
-}
 
 .main-search{
 	display:flex;
 }
 
-.qty {
-	max-width: 30px; 
-	text-align: center;
-}
  /**
   * Hide when Angular is not yet loaded and initialized
   */

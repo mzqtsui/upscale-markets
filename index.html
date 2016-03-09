@@ -15,14 +15,15 @@
 </head>
 <body ng-app="MainApp" ng-controller="MainController" ng-cloak>
 	<ng-include src="'header.html'"></ng-include>
-	<section>
+	<section  flex="60" flex-offset="20" flex-xs="80" flex-offset-xs="10">
 		<h1>Upscale Markets</h1>
 		<aside>
 		Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
 		</aside>
 	</section>
-	<section>
-		<md-card flex="70" flex-offset="15" flex-xs="90" >
+	<section flex="70" flex-offset="15" flex-xs="100">
+		<!-- Search box -->
+		<md-card>
 	        <md-content layout="row"  layout-padding>
 		    <div flex>
 		      <md-input-container class="main-search">
@@ -32,41 +33,40 @@
 		    </div>
 		  </md-content>
 	    </md-card>
-	</section>
-
-	<!-- Food cards -->
-	<section>
-		<div flex flex-offset="15" flex-offset-xs="0" layout-wrap layout="row">
-			<md-card ng-repeat="f in foods" class="food">
-	        <img ng-src="{{f.image}}" class="md-card-image foodImage" alt="FOOD IMAGE">
-	        <md-card-title>
-	          <md-card-title-text>
-	            <span class="md-headline">{{f.name}}</span>
-	          </md-card-title-text>
-	        </md-card-title>
-	        <md-card-content>
-	            {{f.description}}
-	        </md-card-content>
-	        <md-card-actions layout="row" flex layout-align="center center">
-	           
-	           <span>${{f.price}}</span>
-
-	           <span flex></span>
-				<span  layout="row">
-				  <md-button class="md-icon-button" aria-label="Minus">
-				    <i class="fa fa-minus"></i>
-				  </md-button>
-				    <input name="qty" value="0" class="qty">
-				  <md-button class="md-icon-button" aria-label="Add">
-				    <i class="fa fa-plus"></i>
-				  </md-button>
-				</span>
-
-				<md-button>Add to cart</md-button>
-	        </md-card-actions>
-	      </md-card>
-
-	  </div>
+	    <!-- Food items -->
+	    <md-content layout="row" layout-wrap>
+	    	<md-card ng-repeat="f in foods" class="food" flex="noshrink">
+	        	<img ng-src="{{f.image}}" class="md-card-image" alt="FOOD IMAGE">
+	        	<md-card-title flex="nogrow">
+		          	<md-card-title-text>
+		            	<span class="md-headline">{{f.name}}</span>
+		          	</md-card-title-text>
+	        	</md-card-title>
+	        	<md-card-content flex="grow">
+	            	<div>{{f.description}}</div>
+	            	<div class="price">${{f.price}}</div>
+	        	</md-card-content>
+	        	<!-- control md-open to stop it from closing while clicking inside-->
+				<md-fab-toolbar md-open="" count="demo.count" md-direction="left" flex="nogrow">
+				    <md-fab-trigger class="align-with-text">
+				      	<md-button aria-label="menu" class="md-fab md-mini md-primary">
+				        	<i class="fa fa-plus"></i>
+				      	</md-button>
+				    </md-fab-trigger>
+				    <md-toolbar >
+				      	<md-fab-actions class="md-toolbar-tools" layout="row" layout-align="center center">
+				      		<md-button class="md-icon-button" aria-label="Add">
+						    	<i class="fa fa-plus"></i>
+						  	</md-button>
+						  	<input name="qty" value="0" class="qty">
+				       	 	<md-button class="md-icon-button" aria-label="Minus">
+						    	<i class="fa fa-minus"></i>
+						 	</md-button>
+				      </md-fab-actions>
+				    </md-toolbar>
+			  	</md-fab-toolbar>
+	      	</md-card>
+	    </md-content>
 	</section>
 
 
