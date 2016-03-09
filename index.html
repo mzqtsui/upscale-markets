@@ -21,7 +21,7 @@
 		Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
 		</aside>
 	</section>
-	<section flex="70" flex-offset="15" flex-xs="100">
+	<section class="section-items" flex="70" flex-offset="15" flex-xs="100">
 		<!-- Search box -->
 		<md-card>
 	        <md-content layout="row"  layout-padding>
@@ -44,7 +44,7 @@
 	        	</md-card-title>
 	        	<md-card-content flex="grow">
 	            	<div>{{f.description}}</div>
-	            	<div class="price">${{f.price}}</div>
+	            	<div class="price">${{f.price | number:2}}</div>
 	        	</md-card-content>
 	        	<!-- control md-open to stop it from closing while clicking inside-->
 				<md-fab-toolbar md-open="" count="demo.count" md-direction="left" flex="nogrow">

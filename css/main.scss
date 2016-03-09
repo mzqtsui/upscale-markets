@@ -26,6 +26,8 @@ header {
 
 footer{
 	color: $c_footer_text;
+	border-top:1px solid rgba(0,0,0,0.3);
+	margin-top:20px;
 	font-size:14px;
 	.fa{
 		font-size:1.3em;
@@ -44,7 +46,9 @@ strong {
 .cart{
 	font-size:1.2em;
 }
-
+.section-items{
+	max-height:initial;
+}
 .food{
 	width:250px;
 	img{
@@ -62,6 +66,9 @@ strong {
 	.md-fab-toolbar, .md-fab-toolbar-tools, .md-fab-toolbar-wrapper, .md-fab-toolbar-content, md-toolbar {
 		height:54px;
 		min-height:54px;
+	}
+	md-card-content{
+		padding-bottom:5px;
 	}
 }
 
