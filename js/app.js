@@ -4,7 +4,7 @@ var app = angular.module('MainApp', ['ngMaterial']).config(function($mdThemingPr
     .accentPalette('amber');
 });
 
-app.controller('MainController', ['$scope', '$http', '$sce', 'CartService', function($scope, $http, $sce, cartService) {
+app.controller('MainController', ['$scope', '$http', '$sce', 'CartService', 'OrderItem', function($scope, $http, $sce, cartService, OrderItem) {
   $http.get('food.json')
        .then(function(res){
           $scope.foods = res.data;                
@@ -16,37 +16,35 @@ app.controller('MainController', ['$scope', '$http', '$sce', 'CartService', func
 
      
 
-     cartService.currentOrder.increaseItem(new Item('0',1,2.55));
+     cartService.currentOrder.increaseItem(new OrderItem('0',2.55,'Banana'));
 
-     function Item(id, qty, price){
-      this.id = id;
-      this.qty = qty;
-      this.price = price;
-    };
+   
 }]);
 
 // service to use shared cart data
-app.service('CartService', function(){
+app.service('CartService', ['OrderItem','Order',function(OrderItem, Order){
   //every order has 0 or more items
   this.currentOrder = new Order();
-  this.item = new Item(0,1,1.00);
-  console.log(this.item);
 
   
+  
+
+
+}]);
+
+app.factory('Order', ['OrderItem',function(OrderItem){
   function Order(){
     this.orderId = Date.now();
     this.total = 0;  //$ sum
     this.items = {}; //items map
   };
 
-
-
   Order.prototype.increaseItem = function(item){
     //if item already exists, update quantity
     if(item.id in this.items){
       this.items[item.id].qty++;
     }else{
-      this.items[item.id] = new Item(item.id, 1, item.price);
+      this.items[item.id] = new OrderItem(item.id, item.price, item.name);
     }
     this.updateTotal();
     return this;
@@ -68,17 +66,20 @@ app.service('CartService', function(){
       this.total += this.items[i].price * this.items[i].qty;
     }
     console.log(this);
-  }
-
-
-
-  function Item(id, qty, price){
-    this.id = id;
-    this.qty = qty;
-    this.price = price;
   };
 
+  return Order;
+}]);
 
+
+app.factory('OrderItem', function(){
+  function OrderItem(id, price, name){
+    this.id = id;
+    this.qty = 1;
+    this.price = price;
+    this.name = name;
+  };
+  return OrderItem;
 });
 
 //Cart controller for cart/checkout page
