@@ -21,7 +21,7 @@
 		Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
 		</aside>
 	</section>
-	<section class="section-items" flex="70" flex-offset="15" flex-xs="100">
+	<section class="section-items" flex="70" flex-offset="15" flex-xs="100" flex-offset-xs="0">
 		<!-- Search box -->
 		<md-card>
 	        <md-content layout="row"  layout-padding>
@@ -35,39 +35,33 @@
 	    </md-card>
 	    <!-- Food items -->
 	    <md-content layout="row" layout-wrap>
-	    	<md-card ng-repeat="f in foods | filter:searchText" id="f{{::f.id}}" ng-mouseover="f.hover = true" ng-mouseleave="f.hover = false" ng-class="f.hover ? 'md-whiteframe-6dp' : ''" class="food" flex="noshrink">
+	    	<md-card ng-repeat="f in foods | filter:searchText" id="f{{::f.id}}" ng-mouseover="f.hover = true" ng-mouseleave="f.hover = false" ng-class="f.hover ? 'md-whiteframe-6dp' : ''" class="food" flex="noshrink" layout-align="start center">
 	        	<img ng-src="{{f.image}}" class="md-card-image" alt="FOOD IMAGE">
 	        	<md-card-title flex="nogrow">
 		          	<md-card-title-text>
 		            	<span class="md-headline">{{f.name}}</span>
 		          	</md-card-title-text>
 	        	</md-card-title>
-	        	<md-card-content flex="grow">
+	        	<md-card-content flex="grow" >
 	            	<div>{{f.description}}</div>
 	            	<div class="price">${{f.price | number:2}}</div>
 	        	</md-card-content>
-	        	<!-- control md-open to stop it from closing while clicking inside-->
-				<md-fab-toolbar md-open="f.open" count="" md-direction="left" flex="nogrow">
-				    <md-fab-trigger class="align-with-text">
-				      	<md-button aria-label="menu" class="md-fab md-mini md-primary">
-				        	  <md-icon md-font-icon="fa-plus" class="fa fab-add"></md-icon>
-				      	</md-button>
-				    </md-fab-trigger>
-				    <md-toolbar>
-				      	<md-fab-actions class="md-toolbar-tools" layout="row" layout-align="center center">
-				      		<md-button class="md-icon-button" ng-click="increaseItem(f)" aria-label="Add">
-						    	<i class="fa fa-plus"></i>
-						  	</md-button>
-						  	<span>{{f.qty ? f.qty : 0}}</span>
-				       	 	<md-button class="md-icon-button" ng-click="decreaseItem(f)" aria-label="Minus">
-						    	<i class="fa fa-minus"></i>
-						 	</md-button>
-				      </md-fab-actions>
-				    </md-toolbar>
-			  	</md-fab-toolbar>
+	        	<md-toolbar layout="row" layout-align="center center" class="foodbar">
+		       	 	<md-button class="md-icon-button" ng-click="decreaseItem(f)" aria-label="Minus">
+				    	<i class="fa fa-minus"></i>
+				 	</md-button>
+					<span style="margin:0 10px;">{{f.qty ? f.qty : 0}}</span>
+					<md-button class="md-icon-button" ng-click="increaseItem(f)" aria-label="Add">
+			    		<i class="fa fa-plus"></i>
+			  		</md-button>
+	        	</md-toolbar>
 	      	</md-card>
 	    </md-content>
 	</section>
+
+	<md-button id="cart" href="#" md-whiteframe="12" class="md-fab" aria-label="Cart">
+		<i class="fa fa-shopping-cart"></i>
+	</md-button>
 
 
 	<ng-include src="'footer.html'"></ng-include>

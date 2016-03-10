@@ -21,7 +21,7 @@ app.controller('MainController', ['$scope', '$http', '$sce', 'CartService', 'Ord
       'Address' : '1 Stormwind Castle, Eastern Kingdoms, Azeroth'
     };
         
-
+    
    $scope.getQuantity = function(food){
     var qty = cartService.currentOrder.getQuantity(food);
     food.open = qty > 0;

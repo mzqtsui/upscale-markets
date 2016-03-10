@@ -20,7 +20,11 @@ a, a:visited{
 
 header {
 	.md-button{
-		font-weight:700;
+		font-size:18px;
+		font-family:Oswald, Helvetica, Arial, sans-serif;
+	}
+	a, a:visited{
+		color:white;
 	}
 }
 
@@ -43,17 +47,22 @@ strong {
 	color: $c_accent;
 }
 
-.cart{
-	font-size:1.2em;
+#cart{
+    font-size: 1.6em;
+    bottom:10px;
+    right:10px;
+    position: fixed;
 }
 .section-items{
 	max-height:initial;
 }
 .food{
-	width:250px;
+	width:200px;
 	transition:box-shadow 0.2s;
+
 	img{
-		height: 150px; 
+		max-width:160px;
+		max-height:160px;
 	}
 	.qty{
 		max-width: 30px; 
@@ -63,6 +72,16 @@ strong {
 		text-align:center;
 		font-size:24px;
 		margin-top:10px;
+	}
+	md-card-title{
+		padding-top:0;
+	}
+
+	.foodbar{
+		background-color: #72d572;
+		transition:background-color 0.2s;
+		height:42px;
+		min-height:42px;
 	}
 	.md-fab-toolbar, .md-fab-toolbar-tools, .md-fab-toolbar-wrapper, .md-fab-toolbar-content, md-toolbar {
 		height:54px;
@@ -74,6 +93,13 @@ strong {
 	.fab-add{
 		font-size:1.2em;
 		top:3px;
+	}
+	&:hover{
+		cursor:pointer;
+
+		.foodbar{
+			background-color: #259b24; 
+		}
 	}
 }
 
