@@ -28,14 +28,14 @@
 		    <div flex>
 		      <md-input-container class="main-search">
 		        <label>Search</label>
-		        <input ng-model="search">
+		        <input ng-model="searchText">
 		      </md-input-container>
 		    </div>
 		  </md-content>
 	    </md-card>
 	    <!-- Food items -->
 	    <md-content layout="row" layout-wrap>
-	    	<md-card ng-repeat="f in foods" class="food" flex="noshrink">
+	    	<md-card ng-repeat="f in foods | filter:searchText" id="f{{::f.id}}" class="food" flex="noshrink">
 	        	<img ng-src="{{f.image}}" class="md-card-image" alt="FOOD IMAGE">
 	        	<md-card-title flex="nogrow">
 		          	<md-card-title-text>
@@ -50,7 +50,7 @@
 				<md-fab-toolbar md-open="" count="demo.count" md-direction="left" flex="nogrow">
 				    <md-fab-trigger class="align-with-text">
 				      	<md-button aria-label="menu" class="md-fab md-mini md-primary">
-				        	<i class="fa fa-plus"></i>
+				        	  <md-icon md-font-icon="fa-plus" class="fa fab-add"></md-icon>
 				      	</md-button>
 				    </md-fab-trigger>
 				    <md-toolbar>
