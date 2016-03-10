@@ -1,7 +1,7 @@
 var app = angular.module('MainApp', ['ngMaterial']).config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
-    .primaryPalette('blue')
-    .accentPalette('amber');
+    .primaryPalette('indigo')
+    .accentPalette('indigo');
 });
 
 app.controller('MainController', function($scope, $http, $sce) {
@@ -12,5 +12,13 @@ app.controller('MainController', function($scope, $http, $sce) {
 
 	$scope.getHTMLvalue = function(html) {
       return $sce.trustAsHtml(html);	
-     };       
+     }; 
+
+  $scope.user = {
+      'First name': 'Anduin',
+      'Last name': 'Wrynn',
+      'E-mail Address': 'anduin.wrynn@stormwind.ca',
+      'Address' : '1 Stormwind Castle, Eastern Kingdoms, Azeroth'
+    };
+    
 });

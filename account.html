@@ -19,19 +19,33 @@
 	<section  flex="60" flex-offset="20" flex-xs="80" flex-offset-xs="10">
 		<h1>Account Settings</h1>
 	</section>
-	<section class="section-items" flex="70" flex-offset="15" flex-xs="100" flex-offset-xs="0">
-		<div layout="row">
-			<md-card flex="30">
-				<md-card-title>
-		          	<md-card-title-text>
-		            	<span class="md-headline">Profile 
-		            				          	<md-button>Edit</md-button>
-		            	</span>
-		          	</md-card-title-text>
+	<section class="section-items" flex-gt-md="70" flex-offset-gt-md="15" flex-xs="100" flex-offset-xs="0">
+		<md-content layout-gt-md="row" layout="column">
+			<md-content layout="column" flex-xs flex-gt-md="30">
+				<md-card class="settings">
+					<md-card-title>
+			          	<md-card-title-text>
+			          		<div layout="row" layout-align="space-between center">
+			            	<span class="md-headline">Profile</span>
+			            	<md-button class="md-raised">Edit</md-button>
+			            	</div>
+			          	</md-card-title-text>
+			        </md-card-title>
+			        	<md-card-content layout-padding="" ng-repeat="(key,value) in user">
+			          		<div layout="column" flex>
+			          			<md-content>
+			          				<strong>{{key}}</strong> 
+			          			</md-content>
+			          			<md-content>
+			          				{{value}}
+			          			</md-content>				      
+					     	</div>			     					      
+		        		</md-card-content>
+		        
 
-		        </md-card-title>
-		    </md-card>
-		    <div layout="column" flex="70">
+			    </md-card>
+			</md-content>
+		    <md-content layout="column" flex-xs flex-gt-md="70">
 				<md-card flex>
 					<md-card-title>
 				          	<md-card-title-text>
@@ -42,7 +56,7 @@
 			    <md-card flex>
 					<md-card-title>
 				          	<md-card-title-text>
-				            	<span class="md-headline">Payment</span>
+				            	<span class="md-headline">UP!Rewards&trade;</span>
 				          	</md-card-title-text>
 			        	</md-card-title>
 			    </md-card>	
@@ -53,8 +67,8 @@
 				          	</md-card-title-text>
 			        	</md-card-title>
 			    </md-card>			   
-			</div>
-		</div>	    	    
+			</md-content>
+		</md-content>	    	    
 	</section>
 
 	<ng-include src="'footer.html'"></ng-include>
