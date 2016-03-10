@@ -22,9 +22,23 @@ app.controller('MainController', ['$scope', '$http', '$sce', 'CartService', 'Ord
     };
         
 
-     cartService.currentOrder.increaseItem(new OrderItem('0',2.55,'Banana'));
+   $scope.getQuantity = function(food){
+    var qty = cartService.currentOrder.getQuantity(food);
+    food.open = qty > 0;
+    return qty;
+   }
 
-   
+   $scope.increaseItem = function(food){
+    cartService.currentOrder.increaseItem(food);
+    food.qty = $scope.getQuantity(food);
+    food.open = true;
+   }
+
+   $scope.decreaseItem = function(food){
+    cartService.currentOrder.decreaseItem(food);
+    food.qty = $scope.getQuantity(food);
+    food.open = true;
+   }
 }]);
 
 // service to use shared cart data
@@ -65,6 +79,13 @@ app.factory('Order', ['OrderItem',function(OrderItem){
     this.updateTotal();
     return this;
   };
+
+  Order.prototype.getQuantity = function(food){
+    if(food.id in this.items){
+      return this.items[food.id].qty;
+    }
+    return 0;
+  }
 
   Order.prototype.updateTotal = function(){
     this.total = 0;

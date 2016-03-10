@@ -35,7 +35,7 @@
 	    </md-card>
 	    <!-- Food items -->
 	    <md-content layout="row" layout-wrap>
-	    	<md-card ng-repeat="f in foods | filter:searchText" id="f{{::f.id}}" class="food" flex="noshrink">
+	    	<md-card ng-repeat="f in foods | filter:searchText" id="f{{::f.id}}" ng-mouseover="f.hover = true" ng-mouseleave="f.hover = false" ng-class="f.hover ? 'md-whiteframe-6dp' : ''" class="food" flex="noshrink">
 	        	<img ng-src="{{f.image}}" class="md-card-image" alt="FOOD IMAGE">
 	        	<md-card-title flex="nogrow">
 		          	<md-card-title-text>
@@ -47,7 +47,7 @@
 	            	<div class="price">${{f.price | number:2}}</div>
 	        	</md-card-content>
 	        	<!-- control md-open to stop it from closing while clicking inside-->
-				<md-fab-toolbar md-open="" count="demo.count" md-direction="left" flex="nogrow">
+				<md-fab-toolbar md-open="f.open" count="" md-direction="left" flex="nogrow">
 				    <md-fab-trigger class="align-with-text">
 				      	<md-button aria-label="menu" class="md-fab md-mini md-primary">
 				        	  <md-icon md-font-icon="fa-plus" class="fa fab-add"></md-icon>
@@ -55,11 +55,11 @@
 				    </md-fab-trigger>
 				    <md-toolbar>
 				      	<md-fab-actions class="md-toolbar-tools" layout="row" layout-align="center center">
-				      		<md-button class="md-icon-button" aria-label="Add">
+				      		<md-button class="md-icon-button" ng-click="increaseItem(f)" aria-label="Add">
 						    	<i class="fa fa-plus"></i>
 						  	</md-button>
-						  	<input name="qty" value="0" class="qty">
-				       	 	<md-button class="md-icon-button" aria-label="Minus">
+						  	<span>{{f.qty ? f.qty : 0}}</span>
+				       	 	<md-button class="md-icon-button" ng-click="decreaseItem(f)" aria-label="Minus">
 						    	<i class="fa fa-minus"></i>
 						 	</md-button>
 				      </md-fab-actions>
