@@ -1,44 +1,51 @@
 [
   {
+    "id":"0",
     "image": "img",
     "name": "Banana",
     "price": 1.00,
     "description": "okra eggplant tomato"
   },
     {
+    "id":"1",
     "image": "img",
     "name": "Pumpkin",
-    "price": 10.00,
+    "price": 0.99,
     "description": "Bacon ipsum dolor amet cupim tongue tail, flank beef kielbasa prosciutto. "
   },
   {
+    "id":"2",
   	"image": "img",
   	"name": "Donut",
   	"price": 3.50,
   	"description": "I love powder cookie. Gingerbread pudding lollipop."
   },
   {
+    "id":"3",
     "image": "img",
     "name": "Donut",
     "price": 3.50,
     "description": "I love powder cookie. Gingerbread pudding lollipop."
   },
   {
+    "id":"4",
     "image": "img",
     "name": "Donut",
     "price": 3.50,
     "description": "I love powder cookie. Gingerbread pudding lollipop."
   },
   {
+    "id":"5",
     "image": "img",
     "name": "Donut",
     "price": 3.50,
     "description": "I love powder cookie. Gingerbread pudding lollipop."
   },
   {
+    "id":"6",
     "image": "img",
-    "name": "Donut",
-    "price": 3.50,
+    "name": "Pie",
+    "price": 6.59,
     "description": "I love powder cookie. Gingerbread pudding lollipop."
   }
 ]

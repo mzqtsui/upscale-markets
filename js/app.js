@@ -4,7 +4,7 @@ var app = angular.module('MainApp', ['ngMaterial']).config(function($mdThemingPr
     .accentPalette('amber');
 });
 
-app.controller('MainController', function($scope, $http, $sce) {
+app.controller('MainController', ['$scope', '$http', '$sce', 'CartService', function($scope, $http, $sce, cartService) {
   $http.get('food.json')
        .then(function(res){
           $scope.foods = res.data;                
@@ -13,4 +13,24 @@ app.controller('MainController', function($scope, $http, $sce) {
 	$scope.getHTMLvalue = function(html) {
       return $sce.trustAsHtml(html);	
      };       
+}]);
+
+// service to use shared cart data
+app.service('CartService', function(){
+  this.items = [];
+
+  //sample object
+  var item = {
+    id: 0,
+    qty: 0,
+    price: 0.00 //final price
+  };  
+
+
 });
+
+//Cart controller for cart/checkout page
+app.controller('CartController', ['$scope', 'CartService', function($scope, cartService){
+
+
+}]);
