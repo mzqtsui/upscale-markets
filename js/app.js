@@ -1,10 +1,13 @@
 var app = angular.module('MainApp', ['ngMaterial']).config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
-    .primaryPalette('indigo')
-    .accentPalette('indigo');
+    .primaryPalette('blue')
+    .accentPalette('pink');
 });
 
-app.controller('MainController', ['$scope', '$http', '$sce', 'CartService', 'OrderItem', function($scope, $http, $sce, cartService, OrderItem) {
+app.controller('MainController', 
+    ['$scope', '$http', '$sce', '$mdToast', 'CartService', 'OrderItem', 
+      function($scope, $http, $sce, $mdToast, cartService, OrderItem) {
+
   $http.get('food.json')
        .then(function(res){
           $scope.foods = res.data;                
@@ -21,6 +24,16 @@ app.controller('MainController', ['$scope', '$http', '$sce', 'CartService', 'Ord
       'Address' : '1 Stormwind Castle, Eastern Kingdoms, Azeroth'
     };
         
+
+  $scope.total = 0;
+
+  $scope.showSimpleToast = function(msg) {
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent(msg)
+        .hideDelay(1000)
+    );
+  };
     
    $scope.getQuantity = function(food){
     var qty = cartService.currentOrder.getQuantity(food);
@@ -31,13 +44,17 @@ app.controller('MainController', ['$scope', '$http', '$sce', 'CartService', 'Ord
    $scope.increaseItem = function(food){
     cartService.currentOrder.increaseItem(food);
     food.qty = $scope.getQuantity(food);
-    food.open = true;
+    $scope.total = cartService.currentOrder.total;
+    $scope.showSimpleToast(food.name + ' added');
    }
 
    $scope.decreaseItem = function(food){
-    cartService.currentOrder.decreaseItem(food);
-    food.qty = $scope.getQuantity(food);
-    food.open = true;
+    if(food.qty > 0){
+      cartService.currentOrder.decreaseItem(food);
+      food.qty = $scope.getQuantity(food);
+      $scope.total = cartService.currentOrder.total;
+      $scope.showSimpleToast(food.name + ' removed');
+    }
    }
 }]);
 
@@ -92,7 +109,7 @@ app.factory('Order', ['OrderItem',function(OrderItem){
     for(i in this.items){
       this.total += this.items[i].price * this.items[i].qty;
     }
-    console.log(this);
+    //console.log(this);
   };
 
   return Order;
@@ -114,3 +131,4 @@ app.controller('CartController', ['$scope', 'CartService', function($scope, cart
 
 
 }]);
+

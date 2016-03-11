@@ -4,6 +4,7 @@ $c_accent: #0D47A1;
 
 body{
 	font-family: Roboto, Helvetica, Arial, sans-serif;
+	overflow:hidden;
 }
 
 h1{
@@ -17,8 +18,15 @@ a, a:visited{
 	color:$c_text;
 	text-decoration:none;
 }
-
+main{
+	height:100%;
+	width:100%;
+	overflow:auto;
+	padding-right:17px;
+}
 header {
+	z-index:10;
+	position:relative;
 	.md-button{
 		font-size:18px;
 		font-family:Oswald, Helvetica, Arial, sans-serif;
@@ -46,12 +54,17 @@ footer{
 strong {
 	color: $c_accent;
 }
-
-#cart{
-    font-size: 1.6em;
+#hud{
+    
     bottom:10px;
     right:10px;
     position: fixed;
+    z-index:10;
+    #cart{
+    	font-size: 1.4em;
+    	padding:2px 12px;
+    	border-radius:5px;
+    }
 }
 .section-items{
 	max-height:initial;

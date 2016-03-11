@@ -14,7 +14,9 @@
 	<link rel="stylesheet" href="css/main.css" type="text/css" >
 </head>
 <body ng-app="MainApp" ng-controller="MainController" ng-cloak>
+	
 	<ng-include src="'header.html'"></ng-include>
+	<main>
 	<section  flex="60" flex-offset="20" flex-xs="80" flex-offset-xs="10">
 		<h1>Upscale Markets</h1>
 		<aside>
@@ -58,13 +60,17 @@
 	      	</md-card>
 	    </md-content>
 	</section>
-
-	<md-button id="cart" href="#" md-whiteframe="12" class="md-fab" aria-label="Cart">
-		<i class="fa fa-shopping-cart"></i>
-	</md-button>
+	<div id="hud">
+		<md-button id="cart" href="#"  class="md-raised md-accent" aria-label="Cart">
+			<span>${{ total | number:2}}   </span><i class="fa fa-shopping-cart"></i>
+		</md-button>
+	</div>
+	
 
 
 	<ng-include src="'footer.html'"></ng-include>
+
+</main>
 	<!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
