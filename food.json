@@ -62,5 +62,30 @@
     "type": "meat",
     "price": 6.59,
     "description": "Kevin shankle filet mignon, strip steak "
+  },
+  {
+    "id":"8",
+    "image": "img/orange.jpg",
+    "name": "Chicken",
+    "type": "meat",
+    "price": 5.59,
+    "description": "Kevin shankle filet mignon, strip steak "
+  },
+  {
+    "id":"9",
+    "image": "img/orange.jpg",
+    "name": "Lamb",
+    "type": "meat",
+    "price": 8.59,
+    "description": "Kevin shankle filet mignon, strip steak "
+  }
+  ,
+  {
+    "id":"10",
+    "image": "img/orange.jpg",
+    "name": "Bagel",
+    "type": "bakery",
+    "price": 8.59,
+    "description": "Kevin shankle filet mignon, strip steak "
   }
 ]
