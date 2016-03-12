@@ -30,7 +30,6 @@ app.controller('MainController',
     
    $scope.getQuantity = function(food){
     var qty = cartService.currentOrder.getQuantity(food);
-    food.open = qty > 0;
     return qty;
    }
 
@@ -96,6 +95,7 @@ app.factory('Order', ['OrderItem',function(OrderItem){
     this.orderId = Date.now();
     this.total = 0;  //$ sum
     this.items = {}; //items map
+    this.empty = true;
   };
 
   Order.prototype.increaseItem = function(item){
@@ -112,7 +112,7 @@ app.factory('Order', ['OrderItem',function(OrderItem){
   Order.prototype.decreaseItem = function(item){
     if(item.id in this.items){
       this.items[item.id].qty--;
-      if(this.items[item.id].qty < 0)
+      if(this.items[item.id].qty <= 0)
         delete this.items[item.id];
     }
     this.updateTotal();
@@ -131,6 +131,10 @@ app.factory('Order', ['OrderItem',function(OrderItem){
     for(i in this.items){
       this.total += this.items[i].price * this.items[i].qty;
     }
+    if(this.total == 0)
+      this.empty = true;
+    else
+      this.empty = false;
     //console.log(this);
   };
 
