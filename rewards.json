@@ -1,0 +1,32 @@
+[
+  {
+    "id":"0",
+    "points": 42,
+    "name": "Life",
+    "description": "You have found the meaning of life."
+  },
+  {
+    "id":"1",
+    "points": 750,
+    "name": "$5 Off",
+    "description": "Get $5 off your next purchase!"
+  },
+  {
+    "id":"2",
+    "points": 1000,
+    "name": "$10 Off",
+    "description": "Get $10 off your next purchase!"
+  },
+  {
+    "id":"3",
+    "points": 1750,
+    "name": "$20 Off",
+    "description": "Get $20 off your next purchase!"
+  },
+  {
+    "id":"4",
+    "points": 20000,
+    "name": "iPad Mini",
+    "description": "Get a free iPad Mini"
+  }
+]
