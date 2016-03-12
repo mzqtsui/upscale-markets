@@ -4,7 +4,6 @@ $c_accent: #0D47A1;
 
 body{
 	font-family: Roboto, Helvetica, Arial, sans-serif;
-	overflow:hidden;
 }
 
 h1{
@@ -17,12 +16,6 @@ h1{
 a, a:visited{
 	color:$c_text;
 	text-decoration:none;
-}
-main{
-	height:100%;
-	width:100%;
-	overflow:auto;
-	padding-right:17px;
 }
 header {
 	z-index:10;
@@ -116,7 +109,9 @@ strong {
 		}
 	}
 }
-
+#cart-dialog{
+	max-width:680px;
+}
 .main-search{
 	display:flex;
 }

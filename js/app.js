@@ -5,8 +5,8 @@ var app = angular.module('MainApp', ['ngMaterial']).config(function($mdThemingPr
 });
 
 app.controller('MainController', 
-    ['$scope', '$http', '$sce', '$mdToast', 'CartService', 'OrderItem', 
-      function($scope, $http, $sce, $mdToast, cartService, OrderItem) {
+    ['$scope', '$http', '$sce', '$mdToast', '$mdDialog', '$mdMedia', 'CartService', 'OrderItem', 
+      function($scope, $http, $sce, $mdToast, $mdDialog, $mdMedia, cartService, OrderItem) {
 
   $http.get('food.json')
        .then(function(res){
@@ -27,13 +27,6 @@ app.controller('MainController',
 
   $scope.total = 0;
 
-  $scope.showSimpleToast = function(msg) {
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent(msg)
-        .hideDelay(1000)
-    );
-  };
     
    $scope.getQuantity = function(food){
     var qty = cartService.currentOrder.getQuantity(food);
@@ -45,7 +38,6 @@ app.controller('MainController',
     cartService.currentOrder.increaseItem(food);
     food.qty = $scope.getQuantity(food);
     $scope.total = cartService.currentOrder.total;
-    $scope.showSimpleToast(food.name + ' added');
    }
 
    $scope.decreaseItem = function(food){
@@ -53,19 +45,49 @@ app.controller('MainController',
       cartService.currentOrder.decreaseItem(food);
       food.qty = $scope.getQuantity(food);
       $scope.total = cartService.currentOrder.total;
-      $scope.showSimpleToast(food.name + ' removed');
     }
    }
+
+
+   
+    $scope.showAdvanced = function(ev) {
+    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+    $mdDialog.show({
+      controller: ['$scope', '$mdDialog', 'CartService',
+        function($scope, $mdDialog, cartService){
+          $scope.order = cartService.currentOrder;
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+
+          $scope.checkout = function(){
+          }
+      }],
+      templateUrl: 'cart.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: useFullScreen
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+    $scope.$watch(function() {
+      return $mdMedia('xs') || $mdMedia('sm');
+    }, function(wantsFullScreen) {
+      $scope.customFullscreen = (wantsFullScreen === true);
+    });
+  };
 }]);
+
+
 
 // service to use shared cart data
 app.service('CartService', ['OrderItem','Order',function(OrderItem, Order){
   //every order has 0 or more items
   this.currentOrder = new Order();
-
-  
-  
-
 
 }]);
 

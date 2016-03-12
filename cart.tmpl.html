@@ -1,0 +1,35 @@
+<md-dialog aria-label="Your Cart"  ng-cloak id="cart-dialog">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Your Cart</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-icon-font="fa-cancel" class="fa" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content" layout="row" layout-wrap>
+        <md-card ng-repeat="i in order.items" flex="30" style="min-width:150px;">
+          <md-card-title flex="nogrow">
+              <md-card-title-text>
+                <span class="md-headline">{{i.name}} </span>
+              </md-card-title-text>
+          </md-card-title>
+          <md-card-content layout="row">
+              <div>{{i.price | number:2}} x {{i.qty}}</div>
+              <span flex></span>
+              <strong>${{i.price * i.qty | number:2}}</strong>
+          </md-card-content>
+        </md-card>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" layout-margin>
+    <h3>Total: ${{order.total | number:2}}</h3>
+      <md-button class="md-raised md-accent" ng-click="checkout()">
+       Checkout
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
