@@ -15,15 +15,15 @@ app.controller('MainController',
 
 	$scope.getHTMLvalue = function(html) {
       return $sce.trustAsHtml(html);	
-     }; 
+     };      
 
   $scope.user = {
       'First name': 'Anduin',
       'Last name': 'Wrynn',
       'E-mail Address': 'anduin.wrynn@stormwind.ca',
-      'Address' : '1 Stormwind Castle, Eastern Kingdoms, Azeroth'
+      'Address' : '1 Stormwind Castle <br> Eastern Kingdoms, Azeroth'
     };
-        
+
 
   $scope.total = 0;
 
