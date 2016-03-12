@@ -13,12 +13,37 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/main.css" type="text/css" >
 </head>
-<body ng-app="MainApp" ng-controller="MainController" ng-cloak>
+<body ng-app="MainApp" ng-controller="RewardsController" ng-cloak>
 	<ng-include src="'header.html'"></ng-include>
-	<section>
-		<h1>YOU HAVE <strong>1000</strong> POINTS!</h1>
+	<section flex="70" flex-offset="15" flex-sm="80" flex-offset-sm="10" flex-xs="90" flex-offset-xs="5" layout-padding>
+		<h1>YOU HAVE <strong>{{currentPoints}}</strong> POINTS!</h1>
+		<div>You get 1 UP! Point for every $1 you spend on groceries! Claim your rewards below.</div>
 	</section>
-
+	<section flex="70" flex-offset="15" flex-sm="90" flex-offset-sm="5" flex-xs="100" flex-offset-xs="0">
+		<md-content layout="row" layout-wrap>
+			<md-card ng-repeat="r in rewards" ng-mouseover="r.hover = true" ng-mouseleave="r.hover = false" ng-class="getRewardClass(r)"  class="reward" flex="noshrink" layout-align="start center">
+			<md-content md-ink-ripple layout="row" layout-wrap layout-fill>
+				<div class="no-reward" ng-class="r.points > currentPoints ? 'show': ''" layout="row" layout-align="center center">
+					<div>Earn {{r.points - currentPoints | number}} more points to get this reward!</div>
+				</div>
+	        	<md-card-title>
+		          	<md-card-title-text>
+		            	<span class="md-headline">{{r.name}}</span>
+		            	<span class="md-subhead">
+		            		<span class="points">{{r.points | number}} UP! Points </span> 
+		            		<br>{{r.description}}
+		            	</span>
+		          	</md-card-title-text>
+		          	<md-card-title-media>
+		            	<div class="md-media-md card-media">
+							<img ng-src="img/orange.jpg" class="md-card-image" alt="Not an orange">
+		            	</div>
+		          	</md-card-title-media>
+	        	</md-card-title>
+	        </md-content>
+	     	</md-card>
+	  	</md-content>
+	</section>
 	<ng-include src="'footer.html'"></ng-include>
 	<!-- Angular Material requires Angular.js Libraries -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>

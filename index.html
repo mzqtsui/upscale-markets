@@ -17,15 +17,15 @@
 	
 	<ng-include src="'header.html'"></ng-include>
 	<main id="main">
-	<section  flex="60" flex-offset="20" flex-xs="80" flex-offset-xs="10">
+	<section flex="60" flex-offset="20" flex-sm="80" flex-offset-sm="10" flex-xs="90" flex-offset-xs="5">
 		<h1>Upscale Markets</h1>
 		<aside>
 		Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
 		</aside>
 	</section>
-	<section class="section-items" flex="70" flex-offset="15" flex-xs="100" flex-offset-xs="0">
+	<section class="section-items"  flex="70" flex-offset="15" flex-sm="90" flex-offset-sm="5" flex-xs="100" flex-offset-xs="0">
 		<!-- Search box -->
-		<md-card>
+		<md-card md-whiteframe="4">
 	        <md-content layout="row"  layout-padding>
 		    <div flex>
 		      <md-input-container class="main-search">
@@ -38,35 +38,35 @@
 	    <!-- Food items -->
 	    <md-content layout="row" layout-wrap>
 	    	<md-card ng-repeat="f in foods | filter:searchText" id="f{{::f.id}}" ng-mouseover="f.hover = true" ng-mouseleave="f.hover = false" ng-class="f.hover ? 'md-whiteframe-6dp' : ''" class="food" flex="noshrink" layout-align="start center">
-	        	<img ng-src="{{f.image}}" class="md-card-image" alt="FOOD IMAGE">
-	        	<md-card-title flex="nogrow">
+	    		<div class="type" ng-class="'{{f.type}}'"></div>
+	        	<md-card-title>
 		          	<md-card-title-text>
 		            	<span class="md-headline">{{f.name}}</span>
+		            	<span class="md-subhead">
+		            		<span class="price">${{f.price | number:2}}</span> 
+		            		<br>{{f.description}}
+		            	</span>
 		          	</md-card-title-text>
+		          	<md-card-title-media>
+		            	<div class="md-media-md card-media">
+							<img ng-src="{{f.image}}" class="md-card-image" alt="Not an orange">
+		            	</div>
+		          	</md-card-title-media>
 	        	</md-card-title>
-	        	<md-card-content flex="grow" >
-	            	<div>{{f.description}}</div>
-	            	<div class="price">${{f.price | number:2}}</div>
-	        	</md-card-content>
 	        	<md-toolbar layout="row" layout-align="center center" class="foodbar">
-		       	 	<md-button class="md-icon-button" ng-click="decreaseItem(f)" aria-label="Minus">
+		       	 	<md-button class="md-icon-button md-raised inc-button md-primary inc-minus" ng-class="f.hover ? 'show-inc' : ''"ng-click="decreaseItem(f)" aria-label="Minus">
 				    	<i class="fa fa-minus"></i>
 				 	</md-button>
 					<span style="margin:0 10px;">{{f.qty ? f.qty : 0}}</span>
-					<md-button class="md-icon-button" ng-click="increaseItem(f)" aria-label="Add">
+					<md-button class="md-icon-button md-raised inc-button md-primary inc-plus" ng-class="f.hover ? 'show-inc' : ''"ng-click="increaseItem(f)" aria-label="Add">
 			    		<i class="fa fa-plus"></i>
 			  		</md-button>
 	        	</md-toolbar>
-	      	</md-card>
+	      </md-card>
 	    </md-content>
 	</section>
-	<div id="hud">
-		<md-button id="cart" href="#" ng-click="showAdvanced($event)"  class="md-raised md-accent md-no-focus-style" aria-label="Cart">
-			<span>${{ total | number:2}}   </span><i class="fa fa-shopping-cart"></i>
-		</md-button>
-	</div>
 	
-
+	<ng-include src="'cart-hud.html'"></ng-include>
 
 	<ng-include src="'footer.html'"></ng-include>
 

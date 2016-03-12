@@ -5,8 +5,8 @@ var app = angular.module('MainApp', ['ngMaterial']).config(function($mdThemingPr
 });
 
 app.controller('MainController', 
-    ['$scope', '$http', '$sce', '$mdToast', '$mdDialog', '$mdMedia', 'CartService', 'OrderItem', 
-      function($scope, $http, $sce, $mdToast, $mdDialog, $mdMedia, cartService, OrderItem) {
+    ['$scope', '$http', '$sce', '$mdToast', 'CartService', 'OrderItem', 
+      function($scope, $http, $sce, $mdToast, cartService, OrderItem) {
 
   $http.get('food.json')
        .then(function(res){
@@ -30,7 +30,6 @@ app.controller('MainController',
     
    $scope.getQuantity = function(food){
     var qty = cartService.currentOrder.getQuantity(food);
-    food.open = qty > 0;
     return qty;
    }
 
@@ -50,6 +49,83 @@ app.controller('MainController',
 
 
    
+}]);
+
+
+
+// service to use shared cart data
+app.service('CartService', ['OrderItem','Order',function(OrderItem, Order){
+  //every order has 0 or more items
+  this.currentOrder = new Order();
+
+}]);
+
+app.factory('Order', ['OrderItem',function(OrderItem){
+  function Order(){
+    this.orderId = Date.now();
+    this.total = 0;  //$ sum
+    this.items = {}; //items map
+    this.empty = true;
+  };
+
+  Order.prototype.increaseItem = function(item){
+    //if item already exists, update quantity
+    if(item.id in this.items){
+      this.items[item.id].qty++;
+    }else{
+      this.items[item.id] = new OrderItem(item.id, item.price, item.name);
+    }
+    this.updateTotal();
+    return this;
+  };
+
+  Order.prototype.decreaseItem = function(item){
+    if(item.id in this.items){
+      this.items[item.id].qty--;
+      if(this.items[item.id].qty <= 0)
+        delete this.items[item.id];
+    }
+    this.updateTotal();
+    return this;
+  };
+
+  Order.prototype.getQuantity = function(food){
+    if(food.id in this.items){
+      return this.items[food.id].qty;
+    }
+    return 0;
+  }
+
+  Order.prototype.updateTotal = function(){
+    this.total = 0;
+    for(i in this.items){
+      this.total += this.items[i].price * this.items[i].qty;
+    }
+    if(this.total == 0)
+      this.empty = true;
+    else
+      this.empty = false;
+    //console.log(this);
+  };
+
+  return Order;
+}]);
+
+
+app.factory('OrderItem', function(){
+  function OrderItem(id, price, name){
+    this.id = id;
+    this.qty = 1;
+    this.price = price;
+    this.name = name;
+  };
+  return OrderItem;
+});
+
+//Cart controller for cart/checkout hud
+app.controller('CartController', ['$scope', '$mdMedia', '$mdDialog', 'CartService', 
+  function($scope, $mdMedia, $mdDialog, cartService){
+ $scope.cartHover;
     $scope.showAdvanced = function(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
@@ -80,77 +156,29 @@ app.controller('MainController',
       $scope.customFullscreen = (wantsFullScreen === true);
     });
   };
-}]);
-
-
-
-// service to use shared cart data
-app.service('CartService', ['OrderItem','Order',function(OrderItem, Order){
-  //every order has 0 or more items
-  this.currentOrder = new Order();
 
 }]);
 
-app.factory('Order', ['OrderItem',function(OrderItem){
-  function Order(){
-    this.orderId = Date.now();
-    this.total = 0;  //$ sum
-    this.items = {}; //items map
-  };
+app.controller('RewardsController', 
+    ['$scope', '$http', 
+      function($scope, $http) {
 
-  Order.prototype.increaseItem = function(item){
-    //if item already exists, update quantity
-    if(item.id in this.items){
-      this.items[item.id].qty++;
-    }else{
-      this.items[item.id] = new OrderItem(item.id, item.price, item.name);
-    }
-    this.updateTotal();
-    return this;
-  };
+  $http.get('rewards.json')
+   .then(function(res){
+      $scope.rewards = res.data;                
+    });
 
-  Order.prototype.decreaseItem = function(item){
-    if(item.id in this.items){
-      this.items[item.id].qty--;
-      if(this.items[item.id].qty < 0)
-        delete this.items[item.id];
-    }
-    this.updateTotal();
-    return this;
-  };
+   $scope.currentPoints = 1000;
 
-  Order.prototype.getQuantity = function(food){
-    if(food.id in this.items){
-      return this.items[food.id].qty;
-    }
-    return 0;
-  }
+   
 
-  Order.prototype.updateTotal = function(){
-    this.total = 0;
-    for(i in this.items){
-      this.total += this.items[i].price * this.items[i].qty;
-    }
-    //console.log(this);
-  };
-
-  return Order;
-}]);
-
-
-app.factory('OrderItem', function(){
-  function OrderItem(id, price, name){
-    this.id = id;
-    this.qty = 1;
-    this.price = price;
-    this.name = name;
-  };
-  return OrderItem;
-});
-
-//Cart controller for cart/checkout page
-app.controller('CartController', ['$scope', 'CartService', function($scope, cartService){
-
+   $scope.getRewardClass = function(r){
+      if(r.points > $scope.currentPoints)
+        return '';
+      else if (r.hover)
+        return' md-whiteframe-6dp';
+      else
+        return '';
+   };
 
 }]);
-
