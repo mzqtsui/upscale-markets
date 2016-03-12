@@ -3,6 +3,7 @@
     "id":"0",
     "image": "img/orange.jpg",
     "name": "Banana",
+    "type": "produce",
     "price": 0.79,
     "description": "okra eggplant tomato flank"
   },
@@ -10,6 +11,7 @@
     "id":"1",
     "image": "img/orange.jpg",
     "name": "Pumpkin",
+    "type": "produce",
     "price": 0.99,
     "description": "Bacon ipsum flank beef prosciutto. "
   },
@@ -17,6 +19,7 @@
     "id":"2",
   	"image": "img/orange.jpg",
   	"name": "Donut",
+    "type": "bakery",
   	"price": 2.50,
   	"description": "I love powder ingerbread pudding."
   },
@@ -24,6 +27,7 @@
     "id":"3",
     "image": "img/orange.jpg",
     "name": "Apple",
+    "type": "produce",
     "price": 3.50,
     "description": "I love Gingerbread pudding lollipop."
   },
@@ -31,6 +35,7 @@
     "id":"4",
     "image": "img/orange.jpg",
     "name": "Strawberry",
+    "type": "produce",
     "price": 2.49,
     "description": " Gingerbread pudding lollipop."
   },
@@ -38,6 +43,7 @@
     "id":"5",
     "image": "img/orange.jpg",
     "name": "Pear",
+    "type": "produce",
     "price": 1.49,
     "description": "I love powder gingerbread pudding cookie. "
   },
@@ -45,7 +51,16 @@
     "id":"6",
     "image": "img/orange.jpg",
     "name": "Pie",
+    "type": "bakery",
     "price": 6.59,
     "description": "I love powder gingerbread pudding cookie."
+  },
+  {
+    "id":"7",
+    "image": "img/orange.jpg",
+    "name": "Stew Beef",
+    "type": "meat",
+    "price": 6.59,
+    "description": "Kevin shankle filet mignon, strip steak "
   }
 ]

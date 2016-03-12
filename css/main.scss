@@ -84,7 +84,12 @@ strong {
 	width:240px;
 	
 	transition:box-shadow 0.2s;
-
+	md-card-title{
+		padding-bottom:0;
+	}
+	md-toolbar{
+		margin-bottom:10px;
+	}
 	.qty{
 		max-width: 30px; 
 		text-align: center;
@@ -97,7 +102,8 @@ strong {
 	}
 
 	.foodbar{
-		background-color: #72d572;
+		background-color: white;
+		color:black;
 		transition:background-color 0.2s;
 		height:42px;
 		min-height:42px;
@@ -109,6 +115,24 @@ strong {
 	.md-card-content{
 		padding-bottom:5px;
 	}
+
+	.type{
+		height:4px; 
+		background-color: gray;
+		width:100%;
+
+		&.produce{
+			background-color:#259b24;
+		}
+
+		&.meat{
+			background-color: #F44336;
+		}
+		&.bakery{
+			background-color: #795548;
+		}
+	}
+
 	.fab-add{
 		font-size:1.2em;
 		top:3px;
@@ -116,8 +140,29 @@ strong {
 	&:hover{
 		cursor:pointer;
 
-		.foodbar{
-			background-color: #259b24; 
+	}
+	.inc-button{
+		opacity:0;
+		transition:transform 0.2s, opacity 0.2s;
+		.fa{
+			position:relative;
+			top:1px;
+		}
+		&.show-inc{
+			opacity:1;
+			transform: translateY(-10px);
+		}
+		&.inc-plus{
+			transform: translateX(-40px);
+			&.show-inc{
+				transform: translateX(0);
+			}
+		}
+		&.inc-minus{
+			transform: translateX(40px);
+			&.show-inc{
+				transform: translateX(0);
+			}
 		}
 	}
 }

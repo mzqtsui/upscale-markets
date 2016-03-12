@@ -38,6 +38,7 @@
 	    <!-- Food items -->
 	    <md-content layout="row" layout-wrap>
 	    	<md-card ng-repeat="f in foods | filter:searchText" id="f{{::f.id}}" ng-mouseover="f.hover = true" ng-mouseleave="f.hover = false" ng-class="f.hover ? 'md-whiteframe-6dp' : ''" class="food" flex="noshrink" layout-align="start center">
+	    		<div class="type" ng-class="'{{f.type}}'"></div>
 	        	<md-card-title>
 		          	<md-card-title-text>
 		            	<span class="md-headline">{{f.name}}</span>
@@ -53,11 +54,11 @@
 		          	</md-card-title-media>
 	        	</md-card-title>
 	        	<md-toolbar layout="row" layout-align="center center" class="foodbar">
-		       	 	<md-button class="md-icon-button" ng-click="decreaseItem(f)" aria-label="Minus">
+		       	 	<md-button class="md-icon-button md-raised inc-button md-primary inc-minus" ng-class="f.hover ? 'show-inc' : ''"ng-click="decreaseItem(f)" aria-label="Minus">
 				    	<i class="fa fa-minus"></i>
 				 	</md-button>
 					<span style="margin:0 10px;">{{f.qty ? f.qty : 0}}</span>
-					<md-button class="md-icon-button" ng-click="increaseItem(f)" aria-label="Add">
+					<md-button class="md-icon-button md-raised inc-button md-primary inc-plus" ng-class="f.hover ? 'show-inc' : ''"ng-click="increaseItem(f)" aria-label="Add">
 			    		<i class="fa fa-plus"></i>
 			  		</md-button>
 	        	</md-toolbar>
