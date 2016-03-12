@@ -1,0 +1,9 @@
+<div id="hud" class="md-raised" ng-controller="CartController">
+	<div>  </div>
+	<md-button id="total" href="#" ng-click="showAdvanced($event)"  class="md-raised md-primary md-no-focus-style" aria-label="Cart">
+		${{ total | number:2}} 
+	</md-button>
+	<md-button id="cart" href="#" ng-click="showAdvanced($event)" class="md-fab md-accent md-no-focus-style" aria-label="Cart">
+		<i class="fa fa-shopping-cart"></i>
+	</md-button>
+</div>

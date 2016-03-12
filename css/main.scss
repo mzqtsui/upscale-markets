@@ -1,6 +1,9 @@
 $c_text: black;
 $c_footer_text: #777;
 $c_accent: #0D47A1;
+$md_whiteframe_4: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+$md_whiteframe_6: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+$md_whiteframe_8: 0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);
 
 body{
 	font-family: Roboto, Helvetica, Arial, sans-serif;
@@ -54,11 +57,25 @@ strong {
     right:10px;
     position: fixed;
     z-index:10;
-    #cart{
-    	font-size: 1.4em;
-    	padding:2px 12px;
+    #total{
+    	font-size:1.4em;
     	border-radius:5px;
+    	position:relative;
+    	top:20px;
+    	left:30px;
+    	padding-right:15px;
+    	padding-left:10px;
+    	box-shadow:$md_whiteframe_4;
     }
+    #cart{
+    	font-size: 1.6em;
+    	box-shadow:$md_whiteframe_4;
+    	&:hover{
+    		transform: translateY(-1px);
+    		box-shadow:$md_whiteframe_8;
+    	}
+    }
+
 }
 .section-items{
 	max-height:initial;
@@ -110,7 +127,9 @@ strong {
 	}
 }
 #cart-dialog{
-	max-width:550px;
+	aside{
+		padding:20px;
+	}
 	md-card{
 		margin-bottom:0;
 	}

@@ -1,4 +1,4 @@
-<md-dialog aria-label="Your Cart"  ng-cloak id="cart-dialog">
+<md-dialog aria-label="Your Cart"  ng-cloak id="cart-dialog" flex="40" flex-sm="70" flex-xs="100">
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
@@ -10,7 +10,7 @@
       </div>
     </md-toolbar>
     <md-dialog-content>
-      <div layout="row" layout-wrap layout-padding>
+      <div layout="column" layout-padding>
         <aside ng-if="order.empty">
           You have no items in your cart!
         </aside>
@@ -19,8 +19,8 @@
               <span style="font-weight:bold;">{{i.name}}</span>
               <span flex></span>
               <div>{{i.price | number:2}} x {{i.qty}}</div>
-              <span flex="10"></span>
-              <strong>${{i.price * i.qty | number:2}}</strong>
+              <span flex="5"></span>
+              <div><strong flex="10">${{i.price * i.qty | number:2}}</strong></div>
           </md-card-content>
         </md-card>
       </div>
