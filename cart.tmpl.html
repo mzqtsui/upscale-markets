@@ -5,24 +5,21 @@
         <h2>Your Cart</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
-          <md-icon md-icon-font="fa-cancel" class="fa" aria-label="Close dialog"></md-icon>
+          <md-icon md-font-icon="fa-close" class="fa cart-close" aria-label="Close dialog"></md-icon>
         </md-button>
       </div>
     </md-toolbar>
     <md-dialog-content>
-      <div class="md-dialog-content" layout="row" layout-wrap>
+      <div layout="row" layout-wrap layout-padding>
         <aside ng-if="order.empty">
           You have no items in your cart!
         </aside>
-        <md-card ng-repeat="i in order.items" flex="30" style="min-width:150px;">
-          <md-card-title flex="nogrow">
-              <md-card-title-text>
-                  <span style="font-weight:bold;">{{i.name}}</span>
-              </md-card-title-text>
-          </md-card-title>
+        <md-card ng-repeat="i in order.items" flex="100" >
           <md-card-content layout="row">
-              <div>{{i.price | number:2}} x {{i.qty}}</div>
+              <span style="font-weight:bold;">{{i.name}}</span>
               <span flex></span>
+              <div>{{i.price | number:2}} x {{i.qty}}</div>
+              <span flex="10"></span>
               <strong>${{i.price * i.qty | number:2}}</strong>
           </md-card-content>
         </md-card>
