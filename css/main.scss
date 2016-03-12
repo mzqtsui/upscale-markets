@@ -81,24 +81,19 @@ strong {
 	max-height:initial;
 }
 .food{
-	width:200px;
+	width:240px;
+	
 	transition:box-shadow 0.2s;
 
-	img{
-		max-width:160px;
-		max-height:160px;
-	}
 	.qty{
 		max-width: 30px; 
 		text-align: center;
 	}
 	.price{
 		text-align:center;
-		font-size:24px;
+		font-size:18px;
+		font-weight:bold;
 		margin-top:10px;
-	}
-	md-card-title{
-		padding-top:0;
 	}
 
 	.foodbar{
@@ -135,6 +130,9 @@ strong {
 	}
 	md-card-content{
 		padding:6px;
+	}
+	.subtotal{
+		font-weight:bold;
 	}
 	.cart-close{
 		font-size:1.6em;

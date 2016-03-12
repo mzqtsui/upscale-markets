@@ -38,16 +38,20 @@
 	    <!-- Food items -->
 	    <md-content layout="row" layout-wrap>
 	    	<md-card ng-repeat="f in foods | filter:searchText" id="f{{::f.id}}" ng-mouseover="f.hover = true" ng-mouseleave="f.hover = false" ng-class="f.hover ? 'md-whiteframe-6dp' : ''" class="food" flex="noshrink" layout-align="start center">
-	        	<img ng-src="{{f.image}}" class="md-card-image" alt="FOOD IMAGE">
-	        	<md-card-title flex="nogrow">
+	        	<md-card-title>
 		          	<md-card-title-text>
 		            	<span class="md-headline">{{f.name}}</span>
+		            	<span class="md-subhead">
+		            		<span class="price">${{f.price | number:2}}</span> 
+		            		<br>{{f.description}}
+		            	</span>
 		          	</md-card-title-text>
+		          	<md-card-title-media>
+		            	<div class="md-media-md card-media">
+							<img ng-src="{{f.image}}" class="md-card-image" alt="Not an orange">
+		            	</div>
+		          	</md-card-title-media>
 	        	</md-card-title>
-	        	<md-card-content flex="grow" >
-	            	<div>{{f.description}}</div>
-	            	<div class="price">${{f.price | number:2}}</div>
-	        	</md-card-content>
 	        	<md-toolbar layout="row" layout-align="center center" class="foodbar">
 		       	 	<md-button class="md-icon-button" ng-click="decreaseItem(f)" aria-label="Minus">
 				    	<i class="fa fa-minus"></i>
@@ -57,7 +61,7 @@
 			    		<i class="fa fa-plus"></i>
 			  		</md-button>
 	        	</md-toolbar>
-	      	</md-card>
+	      </md-card>
 	    </md-content>
 	</section>
 	
