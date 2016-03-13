@@ -5,6 +5,7 @@ $c_green: #259b24;
 $md_whiteframe_4: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
 $md_whiteframe_6: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
 $md_whiteframe_8: 0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);
+$ease_in_out_quint: cubic-bezier(0.86, 0, 0.07, 1);
 
 body{
 	font-family: Roboto, Helvetica, Arial, sans-serif;
@@ -178,7 +179,7 @@ strong {
 	}
 	.inc-button{
 		opacity:0;
-		transition:transform 0.2s, opacity 0.2s;
+		transition:transform 0.2s $ease_in_out_quint, opacity 0.2s;
 		position:relative;
 		top:20px;
 		.fa{
@@ -189,15 +190,16 @@ strong {
 			opacity:1;
 		}
 		&.inc-plus{
-			transform: translateX(-40px);
+			transform: translateX(-40px) scale(0.5,0.5) translateY(-30px);
 			&.show-inc{
-				transform: translateX(-5px);
+				transform: translateX(-5px) scale(1,1) translateY(0);
+
 			}
 		}
 		&.inc-minus{
-			transform: translateX(40px);
+			transform: translateX(40px) scale(0.5,0.5) translateY(-30px);
 			&.show-inc{
-				transform: translateX(5px);
+				transform: translateX(5px) scale(1,1) translateY(0);
 			}
 		}
 	}
