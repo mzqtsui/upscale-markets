@@ -80,6 +80,9 @@ strong {
     }
 
 }
+.center {
+	text-align: center;
+}
 .section-items{
 	max-height:initial;
 }
@@ -251,6 +254,15 @@ strong {
 
 .title {
 	max-height: 20px; 
+}
+
+.track {
+	text-align: center;
+	font-size: 1.8em;
+}
+
+.wide {
+	width: 98% !important; 
 }
 
  /**

@@ -19,7 +19,7 @@
 	<section  flex="60" flex-offset="20" flex-xs="80" flex-offset-xs="10">
 		<h1>Account Settings</h1>
 	</section>
-	<section class="section-items" flex-gt-sm="70" flex-offset-gt-sm="15" flex-xs="100" flex-offset-xs="0">
+	<section ng-controller="Settings" class="section-items" flex-gt-sm="70" flex-offset-gt-sm="15" flex-xs="100" flex-offset-xs="0">
 		<md-content layout-gt-md="row" layout="column">
 			<md-content layout="column" flex-xs flex-gt-sm="30">
 				<md-card class="settings">
@@ -27,7 +27,7 @@
 			          	<md-card-title-text>
 			          		<div layout="row" layout-align="space-between center">
 			            	<span class="md-headline">Profile</span>
-			            	<md-button class="md-raised">Edit</md-button>
+			            	<md-button ng-click="editProfile($event)" class="md-raised">Edit</md-button>
 			            	</div>
 			          	</md-card-title-text>
 			        </md-card-title>
@@ -42,7 +42,7 @@
 					     	</div>	
 					     	 				      
 		        		</md-card-content>
-		        		<md-button>Change password</md-button>	
+		        		<md-button ng-click="showPrompt($event)" id='pwd'>Change password</md-button>	
 
 			    </md-card>
 			</md-content>
@@ -58,7 +58,7 @@
 			        		<md-content flex="30" layout-padding="" layout="column" layout-align="start start">
 			        			<strong>Status</strong>
 			        			<span>Your latest order has been:</span>
-			        			<md-button class="shipped md-raised">
+			        			<md-button class="shipped md-raised"  ng-click="showTracking($event)" >
 			        				shipped!
 			        			</md-button>
 
@@ -90,7 +90,7 @@
 				        	<div flex layout="column" layout-gt-xs="row" layout-align="start start">
 				        		<md-content flex-gt-sm="30" flex-xs="100" layout-padding="" layout="column" layout-align="start start">
 				        			<span>You have <strong>1000</strong> points!</span>
-				        			<md-button ng-href="#" class="md-primary md-raised points">Redeem points!</md-button>
+				        			<md-button ng-href="/rewards.html" class="md-primary md-raised points">Redeem points!</md-button>
 <md-button>View points history</md-button>
 				        				<br><md-button class="options">Terms & Conditions</md-button>
 				        		</md-content>		        		

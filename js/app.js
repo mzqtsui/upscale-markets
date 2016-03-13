@@ -5,25 +5,13 @@ var app = angular.module('MainApp', ['ngMaterial']).config(function($mdThemingPr
 });
 
 app.controller('MainController', 
-    ['$scope', '$http', '$sce', '$mdToast', 'CartService', 'OrderItem', 
-      function($scope, $http, $sce, $mdToast, cartService, OrderItem) {
+    ['$scope', '$http', '$sce', '$mdToast', 'CartService', 'OrderItem', '$mdDialog',
+      function($scope, $http, $sce, $mdDialog, $mdMedia, $mdToast, cartService, OrderItem) {
 
   $http.get('food.json')
        .then(function(res){
           $scope.foods = res.data;                
         });
-
-	$scope.getHTMLvalue = function(html) {
-      return $sce.trustAsHtml(html);	
-     };      
-
-  $scope.user = {
-      'First name': 'Anduin',
-      'Last name': 'Wrynn',
-      'E-mail Address': 'anduin.wrynn@stormwind.ca',
-      'Address' : '1 Stormwind Castle <br> Eastern Kingdoms, Azeroth'
-    };
-
 
   $scope.total = 0;
 
@@ -54,6 +42,80 @@ app.controller('MainController',
 
    
 }]);
+
+app.controller('Settings', function($scope, $mdDialog, $mdMedia, $sce, $http) {
+    $scope.getHTMLvalue = function(html) {
+      return $sce.trustAsHtml(html);  
+     };      
+
+  $scope.user = {
+      'First name': 'Anduin',
+      'Last name': 'Wrynn',
+      'E-mail Address': 'anduin.wrynn@stormwind.ca',
+      'Address' : '1 Stormwind Castle, Eastern Kingdoms, Azeroth'
+    };
+  $scope.status = '  ';
+  $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm'); 
+  $scope.showPrompt = function(ev) {
+    $mdDialog.show({
+          controller: ['$scope', '$mdDialog',
+            function($scope, $mdDialog){
+              $scope.cancel = function() {
+                $mdDialog.cancel();
+              };
+          }],
+          templateUrl: 'profilepwd.tmpl.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:false
+        });
+        $scope.$watch(function() {
+          return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+          $scope.customFullscreen = (wantsFullScreen === true);
+      });
+  };
+  $scope.editProfile = function(ev) {
+    $mdDialog.show({
+          controller: ['$scope', '$mdDialog',
+            function($scope, $mdDialog){
+              $scope.cancel = function() {
+                $mdDialog.cancel();
+              };
+          }],
+          templateUrl: 'editProfile.tmpl.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:false
+        });
+        $scope.$watch(function() {
+          return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+          $scope.customFullscreen = (wantsFullScreen === true);
+      });
+  };
+  $scope.showTracking = function(ev) {
+    $mdDialog.show({
+          controller: ['$scope', '$mdDialog',
+            function($scope, $mdDialog){
+              $scope.cancel = function() {
+                $mdDialog.cancel();
+              };
+          }],
+          templateUrl: 'track.tmpl.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:false
+        });
+        $scope.$watch(function() {
+          return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+          $scope.customFullscreen = (wantsFullScreen === true);
+      });
+  };  
+});
+
+
 
 
 
