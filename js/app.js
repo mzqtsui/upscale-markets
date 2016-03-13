@@ -33,6 +33,11 @@ app.controller('MainController',
     return qty;
    }
 
+   $scope.setQuantity = function(food, qty){
+    cartService.currentOrder.setQuantity(food, qty);
+    $scope.total = cartService.currentOrder.total;
+   }
+
    $scope.increaseItem = function(food){
     cartService.currentOrder.increaseItem(food);
     food.qty = $scope.getQuantity(food);
@@ -46,7 +51,6 @@ app.controller('MainController',
       $scope.total = cartService.currentOrder.total;
     }
    }
-
 
    
 }]);
@@ -88,6 +92,15 @@ app.factory('Order', ['OrderItem',function(OrderItem){
     this.updateTotal();
     return this;
   };
+
+  Order.prototype.setQuantity = function(food, qty){
+    if(food.id in this.items)
+      this.items[food.id].qty = qty;
+    else
+      this.items[food.id] = new OrderItem(food.id, food.price, food.name);
+    this.items[food.id].qty = qty;
+    this.updateTotal();
+  }
 
   Order.prototype.getQuantity = function(food){
     if(food.id in this.items){

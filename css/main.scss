@@ -110,13 +110,18 @@ strong {
 }
 .food{
 	width:240px;
-	
+	margin-bottom:15px;
 	transition:box-shadow 0.2s;
 	md-card-title{
 		padding-bottom:0;
 	}
 	md-toolbar{
-		margin-bottom:10px;
+		margin-bottom:5px;
+	}
+	input{
+		border:none;
+		max-width:30px;
+		text-align:center;
 	}
 	.md-subhead{
 		line-height:1.4;
@@ -174,24 +179,25 @@ strong {
 	.inc-button{
 		opacity:0;
 		transition:transform 0.2s, opacity 0.2s;
+		position:relative;
+		top:20px;
 		.fa{
 			position:relative;
 			top:1px;
 		}
 		&.show-inc{
 			opacity:1;
-			transform: translateY(-10px);
 		}
 		&.inc-plus{
 			transform: translateX(-40px);
 			&.show-inc{
-				transform: translateX(0);
+				transform: translateX(-5px);
 			}
 		}
 		&.inc-minus{
 			transform: translateX(40px);
 			&.show-inc{
-				transform: translateX(0);
+				transform: translateX(5px);
 			}
 		}
 	}
