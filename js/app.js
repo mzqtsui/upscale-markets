@@ -76,6 +76,8 @@ app.factory('Order', ['OrderItem',function(OrderItem){
     //if item already exists, update quantity
     if(item.id in this.items){
       this.items[item.id].qty++;
+      if(this.items[item.id].qty > 99)
+        this.items[item.id].qty = 99;
     }else{
       this.items[item.id] = new OrderItem(item.id, item.price, item.name);
     }
