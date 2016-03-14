@@ -1,5 +1,5 @@
-<md-dialog ng-controller="SettingsController" aria-label="Edit Profile"  ng-cloak id="changePassword" flex="40" flex-sm="70" flex-xs="100">
-  <form>
+<md-dialog ng-controller="SettingsController" aria-label="Edit Profile"  ng-cloak id="edit-profile" flex="40" flex-sm="70" flex-xs="100">
+  <form name="profileForm">
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Edit Profile</h2>
@@ -9,18 +9,12 @@
         </md-button>
       </div>
     </md-toolbar>
-    <md-dialog-content layout="row">
-      <div class="wide">
-        <md-content layout-padding >
-          <form name="profileForm">
-            <md-input-container class="md-block wide" ng-repeat="(key,value) in user" flex>
-              <label>{{key}}</label>
-              <input name="{{key}}" value="{{value}}">
-            </md-input-container>
-          </form>
-        </md-content>
-      </div>
-
+    <md-dialog-content layout="column" layout-padding>
+      <div class="spacer"></div>
+      <md-input-container ng-repeat="(key,value) in user">
+        <label>{{key}}</label>
+        <input name="{{key}}" value="{{value}}">
+      </md-input-container>
     </md-dialog-content>
     <md-dialog-actions layout="row" layout-margin>
       <md-button class="md-raised md-primary" ng-click="">

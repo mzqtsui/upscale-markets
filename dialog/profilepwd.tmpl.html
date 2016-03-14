@@ -1,5 +1,5 @@
-<md-dialog ng-controller="SettingsController" aria-label="Change Password"  ng-cloak id="changePassword" flex="30" flex-sm="70" flex-xs="100">
-  <form>
+<md-dialog ng-controller="SettingsController" aria-label="Change Password"  ng-cloak id="change-password" flex="30" flex-sm="70" flex-xs="100">
+  <form name="passwordForm">
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Change Password</h2>
@@ -9,37 +9,30 @@
         </md-button>
       </div>
     </md-toolbar>
-    <md-dialog-content layout="row">
-<div class="wide">
-  <md-content layout-padding>
-    <form name="passwordForm">
-      <md-input-container class="md-block wide">
+    <md-dialog-content layout="column" layout-padding>
+      <div class="spacer"></div>
+      <md-input-container>
         <label>Current password</label>
         <input required type="password" name="oldpwd" ng-model="user.oldpwd">
         <div ng-messages="passwordForm.oldpwd.$error">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
-      <md-input-container class="md-block wide">
+      <md-input-container>
         <label>New password</label>
         <input required type="password" name="newpwd" ng-model="user.newpwd">
         <div ng-messages="passwordForm.newpwd.$error">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
-      <md-input-container class="md-block wide">
+      <md-input-container>
         <label>New password again</label>
         <input required type="password" name="pwd2" ng-model="user.newpwd2"/>
         <div ng-messages="passwordForm.newpwd2.$error" multiple>
           <div ng-message="required">This is required.</div>
-
           <div ng-message="notEqual">New password cannot be the same as the current password.</div>
         </div>
       </md-input-container>
-    </form>
-  </md-content>
-</div>
-
     </md-dialog-content>
     <md-dialog-actions layout="row" layout-margin>
       <md-button class="md-raised md-primary" ng-click="getPassword($event)">

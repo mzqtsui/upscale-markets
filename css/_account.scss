@@ -24,8 +24,14 @@
 	max-height: 20px; 
 }
 
-.track {
-	font-size: 1.8em;
+#change-password, #edit-profile{
+	md-input-container{
+		margin-bottom:0;
+	}
+}
+.spacer{
+	padding:0;
+	//this is a hack to avoid the margin-top bug when md-input-container is the first element in dialog
 }
 
 #tracking{
@@ -36,8 +42,4 @@
 	span, time{
 		font-size: 1.8em;
 	}
-}
-
-.wide {
-	width: 98% !important; 
 }
