@@ -1,12 +1,14 @@
-var app = angular.module('MainApp', ['ngMaterial']).config(function($mdThemingProvider) {
+var app = angular.module('MainApp', ['ngMaterial']);
+
+app.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('blue')
     .accentPalette('pink');
 });
 
 app.controller('MainController', 
-    ['$scope', '$http', 'CartService', 'OrderItem',
-      function($scope, $http, cartService, OrderItem) {
+    ['$scope', '$http', 'CartService',
+      function($scope, $http, cartService) {
 
   $http.get('json/food.json')
        .then(function(res){
@@ -22,109 +24,32 @@ app.controller('MainController',
    }
 
    $scope.setQuantity = function(food, qty){
-    cartService.currentOrder.setQuantity(food, qty);
-    $scope.total = cartService.currentOrder.total;
+    $scope.total = cartService.currentOrder.setQuantity(food, qty);
    }
 
    $scope.increaseItem = function(food){
-    cartService.currentOrder.increaseItem(food);
+    $scope.total = cartService.currentOrder.increaseItem(food);
     food.qty = $scope.getQuantity(food);
-    $scope.total = cartService.currentOrder.total;
    }
 
    $scope.decreaseItem = function(food){
     if(food.qty > 0){
-      cartService.currentOrder.decreaseItem(food);
+      $scope.total = cartService.currentOrder.decreaseItem(food);
       food.qty = $scope.getQuantity(food);
-      $scope.total = cartService.currentOrder.total;
+      
     }
    }
 
    
 }]);
 
-app.controller('SettingsController', function($scope, $mdDialog, $mdMedia, $sce, $http) {
-    $scope.getHTMLvalue = function(html) {
-      return $sce.trustAsHtml(html);  
-     };      
-
-  $scope.user = {
-      'First name': 'Anduin',
-      'Last name': 'Wrynn',
-      'E-mail Address': 'anduin.wrynn@stormwind.ca',
-      'Address' : '1 Stormwind Castle, Eastern Kingdoms, Azeroth'
-    };
-  $scope.status = '  ';
-  $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm'); 
-  $scope.showPrompt = function(ev) {
-    $mdDialog.show({
-          controller: ['$scope', '$mdDialog',
-            function($scope, $mdDialog){
-              $scope.cancel = function() {
-                $mdDialog.cancel();
-              };
-          }],
-          templateUrl: 'dialog/profilepwd.tmpl.html',
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose:false
-        });
-        $scope.$watch(function() {
-          return $mdMedia('xs') || $mdMedia('sm');
-        }, function(wantsFullScreen) {
-          $scope.customFullscreen = (wantsFullScreen === true);
-      });
-  };
-  $scope.editProfile = function(ev) {
-    $mdDialog.show({
-          controller: ['$scope', '$mdDialog',
-            function($scope, $mdDialog){
-              $scope.cancel = function() {
-                $mdDialog.cancel();
-              };
-          }],
-          templateUrl: 'dialog/editProfile.tmpl.html',
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose:false
-        });
-        $scope.$watch(function() {
-          return $mdMedia('xs') || $mdMedia('sm');
-        }, function(wantsFullScreen) {
-          $scope.customFullscreen = (wantsFullScreen === true);
-      });
-  };
-  $scope.showTracking = function(ev) {
-    $mdDialog.show({
-          controller: ['$scope', '$mdDialog',
-            function($scope, $mdDialog){
-              $scope.cancel = function() {
-                $mdDialog.cancel();
-              };
-          }],
-          templateUrl: 'dialog/track.tmpl.html',
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose:false
-        });
-        $scope.$watch(function() {
-          return $mdMedia('xs') || $mdMedia('sm');
-        }, function(wantsFullScreen) {
-          $scope.customFullscreen = (wantsFullScreen === true);
-      });
-  };  
-});
-
-
-
-
-
 // service to use shared cart data
-app.service('CartService', ['OrderItem','Order',function(OrderItem, Order){
+app.service('CartService', ['Order',function(Order){
   //every order has 0 or more items
   this.currentOrder = new Order();
 
 }]);
+
 
 app.factory('Order', ['OrderItem',function(OrderItem){
   function Order(){
@@ -143,8 +68,7 @@ app.factory('Order', ['OrderItem',function(OrderItem){
     }else{
       this.items[item.id] = new OrderItem(item.id, item.price, item.name);
     }
-    this.updateTotal();
-    return this;
+    return this.updateTotal();
   };
 
   Order.prototype.decreaseItem = function(item){
@@ -153,8 +77,7 @@ app.factory('Order', ['OrderItem',function(OrderItem){
       if(this.items[item.id].qty <= 0)
         delete this.items[item.id];
     }
-    this.updateTotal();
-    return this;
+    return this.updateTotal();
   };
 
   Order.prototype.setQuantity = function(food, qty){
@@ -163,7 +86,7 @@ app.factory('Order', ['OrderItem',function(OrderItem){
     else
       this.items[food.id] = new OrderItem(food.id, food.price, food.name);
     this.items[food.id].qty = qty;
-    this.updateTotal();
+    return this.updateTotal();
   }
 
   Order.prototype.getQuantity = function(food){
@@ -182,7 +105,8 @@ app.factory('Order', ['OrderItem',function(OrderItem){
       this.empty = true;
     else
       this.empty = false;
-    //console.log(this);
+    
+    return this.total;
   };
 
   return Order;
@@ -199,63 +123,3 @@ app.factory('OrderItem', function(){
   return OrderItem;
 });
 
-//Cart controller for cart/checkout hud
-app.controller('CartController', ['$scope', '$mdMedia', '$mdDialog', 'CartService', 
-  function($scope, $mdMedia, $mdDialog, cartService){
- $scope.cartHover;
-    $scope.showAdvanced = function(ev) {
-    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-    $mdDialog.show({
-      controller: ['$scope', '$mdDialog', 'CartService',
-        function($scope, $mdDialog, cartService){
-          $scope.order = cartService.currentOrder;
-          $scope.cancel = function() {
-            $mdDialog.cancel();
-          };
-
-          $scope.checkout = function(){
-          }
-      }],
-      templateUrl: 'dialog/cart.tmpl.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true,
-      fullscreen: useFullScreen
-    })
-    .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
-    }, function() {
-      $scope.status = 'You cancelled the dialog.';
-    });
-    $scope.$watch(function() {
-      return $mdMedia('xs') || $mdMedia('sm');
-    }, function(wantsFullScreen) {
-      $scope.customFullscreen = (wantsFullScreen === true);
-    });
-  };
-
-}]);
-
-app.controller('RewardsController', 
-    ['$scope', '$http', 
-      function($scope, $http) {
-
-  $http.get('json/rewards.json')
-   .then(function(res){
-      $scope.rewards = res.data;                
-    });
-
-   $scope.currentPoints = 1000;
-
-   
-
-   $scope.getRewardClass = function(r){
-      if(r.points > $scope.currentPoints)
-        return '';
-      else if (r.hover)
-        return' md-whiteframe-6dp';
-      else
-        return '';
-   };
-
-}]);
