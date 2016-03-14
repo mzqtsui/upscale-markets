@@ -51,6 +51,8 @@
 		height:4px; 
 		background-color: gray;
 		width:100%;
+		border-top-left-radius: 2px;
+		border-top-right-radius:2px;
 
 		&.produce{
 			background-color:#259b24;
