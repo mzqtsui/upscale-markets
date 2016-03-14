@@ -8,7 +8,7 @@ app.controller('MainController',
     ['$scope', '$http', 'CartService', 'OrderItem',
       function($scope, $http, cartService, OrderItem) {
 
-  $http.get('food.json')
+  $http.get('json/food.json')
        .then(function(res){
           $scope.foods = res.data;                
         });
@@ -43,7 +43,7 @@ app.controller('MainController',
    
 }]);
 
-app.controller('Settings', function($scope, $mdDialog, $mdMedia, $sce, $http) {
+app.controller('SettingsController', function($scope, $mdDialog, $mdMedia, $sce, $http) {
     $scope.getHTMLvalue = function(html) {
       return $sce.trustAsHtml(html);  
      };      
@@ -64,7 +64,7 @@ app.controller('Settings', function($scope, $mdDialog, $mdMedia, $sce, $http) {
                 $mdDialog.cancel();
               };
           }],
-          templateUrl: 'profilepwd.tmpl.html',
+          templateUrl: 'dialog/profilepwd.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose:false
@@ -83,7 +83,7 @@ app.controller('Settings', function($scope, $mdDialog, $mdMedia, $sce, $http) {
                 $mdDialog.cancel();
               };
           }],
-          templateUrl: 'editProfile.tmpl.html',
+          templateUrl: 'dialog/editProfile.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose:false
@@ -102,7 +102,7 @@ app.controller('Settings', function($scope, $mdDialog, $mdMedia, $sce, $http) {
                 $mdDialog.cancel();
               };
           }],
-          templateUrl: 'track.tmpl.html',
+          templateUrl: 'dialog/track.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose:false
@@ -216,7 +216,7 @@ app.controller('CartController', ['$scope', '$mdMedia', '$mdDialog', 'CartServic
           $scope.checkout = function(){
           }
       }],
-      templateUrl: 'cart.tmpl.html',
+      templateUrl: 'dialog/cart.tmpl.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
@@ -240,7 +240,7 @@ app.controller('RewardsController',
     ['$scope', '$http', 
       function($scope, $http) {
 
-  $http.get('rewards.json')
+  $http.get('json/rewards.json')
    .then(function(res){
       $scope.rewards = res.data;                
     });
