@@ -11,7 +11,6 @@
   display: none !important;
 }
 
-
 body{
 	font-family: Roboto, Helvetica, Arial, sans-serif;
 }
@@ -58,19 +57,8 @@ strong {
 	color: $c_accent;
 }
 
-.center {
-	text-align: center;
-}
-.section-items{
-	max-height:initial;
-}
-
 .dialog-close{
 	font-size:1.6em;
 	opacity:0.7;
-}
-
-.main-search{
-	display:flex;
 }
 
