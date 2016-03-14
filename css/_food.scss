@@ -1,0 +1,96 @@
+
+.food{
+	width:240px;
+	margin-bottom:15px;
+	transition:box-shadow 0.2s;
+	md-card-title{
+		padding-bottom:0;
+	}
+	md-toolbar{
+		margin-bottom:5px;
+	}
+	input{
+		border:none;
+		max-width:30px;
+		text-align:center;
+	}
+	.md-subhead{
+		line-height:1.4;
+	}
+	.qty{
+		max-width: 30px; 
+		text-align: center;
+	}
+	.price{
+		text-align:center;
+		font-size:18px;
+		font-weight:bold;
+		margin-top:10px;
+	}
+
+	.foodbar{
+		background-color: white;
+		color:black;
+		transition:background-color 0.2s;
+		height:42px;
+		min-height:42px;
+	}
+	.md-fab-toolbar, .md-fab-toolbar-tools, .md-fab-toolbar-wrapper, .md-fab-toolbar-content, md-toolbar {
+		height:54px;
+		min-height:54px;
+	}
+	.md-card-content{
+		padding-bottom:5px;
+	}
+
+	.type{
+		height:4px; 
+		background-color: gray;
+		width:100%;
+
+		&.produce{
+			background-color:#259b24;
+		}
+
+		&.meat{
+			background-color: #F44336;
+		}
+		&.bakery{
+			background-color: #795548;
+		}
+	}
+
+	.fab-add{
+		font-size:1.2em;
+		top:3px;
+	}
+	&:hover{
+		cursor:pointer;
+	}
+	.inc-button{
+		opacity:0;
+		transition:transform 0.2s $ease_in_out_quint, opacity 0.2s;
+		position:relative;
+		top:20px;
+		.fa{
+			position:relative;
+			top:1px;
+		}
+		&.show-inc{
+			opacity:1;
+		}
+		&.inc-plus{
+			transform: translateX(-40px) scale(0.5,0.5) translateY(-30px);
+			&.show-inc{
+				transform: translateX(-5px) scale(1,1) translateY(0);
+
+			}
+		}
+		&.inc-minus{
+			transform: translateX(40px) scale(0.5,0.5) translateY(-30px);
+			&.show-inc{
+				transform: translateX(5px) scale(1,1) translateY(0);
+			}
+		}
+	}
+}

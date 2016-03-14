@@ -1,0 +1,34 @@
+.orders{
+	.shipped {
+		background-color: $c_green;
+		color: #fff;
+		opacity: .8;
+		width: 90%;
+		transition:background-color 0.2s;
+
+		&:hover{
+			opacity: 1;
+			background-color: $c_green !important;
+		}
+	}
+	.options {
+		margin-top: -25px; 
+		margin-bottom: -10px; 
+	}
+	.points {
+		width: 90%;
+	}
+}
+
+.title {
+	max-height: 20px; 
+}
+
+.track {
+	text-align: center;
+	font-size: 1.8em;
+}
+
+.wide {
+	width: 98% !important; 
+}

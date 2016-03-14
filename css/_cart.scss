@@ -1,0 +1,42 @@
+#hud{
+    
+    bottom:10px;
+    right:10px;
+    position: fixed;
+    z-index:10;
+    #total{
+    	font-size:1.4em;
+    	border-radius:5px;
+    	position:relative;
+    	top:20px;
+    	left:30px;
+    	padding-right:15px;
+    	padding-left:10px;
+    	box-shadow:$md_whiteframe_4;
+    }
+    #cart{
+    	font-size: 1.6em;
+    	box-shadow:$md_whiteframe_4;
+    	&:hover{
+    		transform: translateY(-1px);
+    		box-shadow:$md_whiteframe_8;
+    	}
+    }
+
+}
+
+#cart-dialog{
+    aside{
+        padding:20px;
+    }
+    md-card{
+        margin-bottom:0;
+    }
+    md-card-content{
+        padding:6px;
+    }
+    .subtotal{
+        font-weight:bold;
+    }
+    
+}
