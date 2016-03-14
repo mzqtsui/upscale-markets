@@ -5,8 +5,8 @@ var app = angular.module('MainApp', ['ngMaterial']).config(function($mdThemingPr
 });
 
 app.controller('MainController', 
-    ['$scope', '$http', '$sce', '$mdToast', 'CartService', 'OrderItem', '$mdDialog',
-      function($scope, $http, $sce, $mdDialog, $mdMedia, $mdToast, cartService, OrderItem) {
+    ['$scope', '$http', 'CartService', 'OrderItem',
+      function($scope, $http, cartService, OrderItem) {
 
   $http.get('food.json')
        .then(function(res){

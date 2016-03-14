@@ -24,7 +24,7 @@
 			<md-card ng-repeat="r in rewards" ng-mouseover="r.hover = true" ng-mouseleave="r.hover = false" ng-class="getRewardClass(r)"  class="reward" flex="noshrink" layout-align="start center">
 			<md-content md-ink-ripple layout="row" layout-wrap layout-fill>
 				<div class="no-reward" ng-class="r.points > currentPoints ? 'show': ''" layout="row" layout-align="center center">
-					<div>Earn {{r.points - currentPoints | number}} more points to get this reward!</div>
+					<div>Earn {{r.points - currentPoints | number}} more points to unlock!</div>
 				</div>
 	        	<md-card-title>
 		          	<md-card-title-text>
